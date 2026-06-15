@@ -127,7 +127,7 @@
                 
                 {{ if eq .Params.contentType "projects" }}
                 <div class="projects-grid">
-                    {{ range .projects }}
+                    {{ range .Params.projects }}
                     <div class="project-box">
                         <div>
                             <h4 style="margin:0 0 0.5rem 0; color:var(--accent-color); font-size:1.2rem;">{{ .name }}</h4>
@@ -147,7 +147,7 @@
 
                 {{ else if eq .Params.contentType "publications" }}
                 <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem;">
-                    {{ range .publications }}
+                    {{ range .Params.publications }}
                     <div style="border-left: 3px solid var(--accent-color); padding-left: 1rem;">
                         <h4 style="margin: 0 0 0.25rem 0;">
                             {{ if .url }}<a href="{{ .url }}" target="_blank" style="text-decoration: none; color: inherit;">{{ .title }} <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a>{{ else }}{{ .title }}{{ end }}
@@ -160,7 +160,7 @@
 
                 {{ else if eq .Params.contentType "awards" }}
                 <div class="horizontal-grid">
-                    {{ range .awards }}
+                    {{ range .Params.awards }}
                     <div class="item-box">
                         <h4 style="margin:0 0 0.5rem 0; color:var(--accent-color);">{{ .title }}</h4>
                         <div style="font-weight:500; font-size:0.95rem;">{{ .institution }}</div>
