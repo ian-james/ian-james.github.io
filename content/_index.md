@@ -2,6 +2,7 @@
 title: "About Me"
 cv_pdf: "assets/resume.pdf"
 cv_doc: "assets/resume.docx"
+cv_long_pdf: "assets/long_cv_resume"
 
 sidebar:
   name: "Your Name"
