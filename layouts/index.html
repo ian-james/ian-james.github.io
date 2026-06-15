@@ -175,7 +175,7 @@
                 <div class="btn-container">
                     {{ with .Params.cv_pdf }}<a href="{{ . | relURL }}" class="btn" download><i class="fas fa-file-pdf"></i> Download CV (PDF)</a>{{ end }}
                     {{ with .Params.cv_doc }}<a href="{{ . | relURL }}" class="btn btn-alt" download><i class="fas fa-file-word"></i> Download CV (Word)</a>{{ end }}
-                    {{ with .Params.long_cv_resume }}<a href="{{ . | relURL }}" class="btn btn-alt" download><i class="fas fa-file-pdf"></i> Download Academic CV (Word)</a>{{ end }}
+                    {{ with .Params.cv_long_pdf }}<a href="{{ . | relURL }}" class="btn btn-alt" download><i class="fas fa-file-pdf"></i> Download Academic CV (PDF)</a>{{ end }}
                 </div>
             </section>
 
