@@ -1,3 +1,5 @@
 baseURL = 'https://ian-james.github.io/'
 languageCode = 'en-us'
 title = 'My Personal Website'
+
+disableKinds = ["taxonomy", "term"]
