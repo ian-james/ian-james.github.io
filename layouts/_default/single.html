@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }} | {{ .Site.Title }}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
     <style>
         :root { 
             --bg-color: #f8f9fa; 
@@ -100,8 +103,8 @@
 
     <div class="container">
         <aside class="sidebar">
-            {{ with .Site.GetPage "/" }}
-                {{ with .Params.sidebar }}
+            {{ $home := .Site.GetPage "/" }}
+            {{ with $home.Params.sidebar }}
                 <img src="{{ .avatar | relURL }}" alt="Profile Image" class="profile-img">
                 <h2>{{ .name }}</h2>
                 <p>{{ .description }}</p>
@@ -110,7 +113,6 @@
                     <a href="{{ .url }}" target="_blank"><i class="{{ .icon }}"></i></a>
                     {{ end }}
                 </div>
-                {{ end }}
             {{ end }}
 
             <nav class="nav-menu">
