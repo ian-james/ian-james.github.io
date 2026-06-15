@@ -29,34 +29,6 @@ competencies:
   - category: "Domain Expertise"
     skills: "Sports Analytics, 3D Mesh Modeling, Predictive Pipeline Architecture, Computational Science"
 
-projects:
-  - name: "Sports Analytics Prediction App"
-    description: "Developed an end-to-end data pipeline and machine learning model stack utilizing XGBoost and Random Forest. Engineered features from historical NHL data to predict game outcomes and identify market betting discrepancies."
-    tools: ["Python", "SQL", "XGBoost", "FastAPI", "Docker"]
-    github: "https://github.com/ian-james"
-  - name: "Agentic RAG Orchestrator"
-    description: "Designed a self-correcting and self-evaluating data pipeline framework leveraging modern LLM agentic orchestration. Optimizes context retrieval from complex technical documentation to eliminate hallucinations."
-    tools: ["Python", "Agentic AI", "Vector DBs", "LangChain"]
-    github: ""
-
-publications:
-  - title: "Your Published Academic Paper Title or Dissertation Name"
-    authors: "J. Fraser, et al."
-    venue: "Journal of Computational Science / University of Guelph Repository"
-    year: "2023"
-    url: "https://scholar.google.ca"
-
-awards:
-  - title: "Academic Award or Scholarship"
-    institution: "University of Guelph"
-    year: "2021"
-  - title: "Graduate Fellowship"
-    institution: "Western University"
-    year: "2011"
-  - title: "Honors Distinction"
-    institution: "Saint Mary's University"
-    year: "2006"
-
 education:
   - degree: "Ph.D. Computational Science"
     institution: "University of Guelph"
