@@ -1,0 +1,7 @@
+baseURL = 'https://your-username.github.io/'
+languageCode = 'en-us'
+title = 'My Personal Website'
+theme = 'PaperMod'
+
+[params]
+    homeInfoParams = { title = "Welcome!", subtitle = "This site is built with Hugo entirely in the cloud." }
