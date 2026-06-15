@@ -19,15 +19,43 @@ sidebar:
       icon: "fas fa-graduation-cap"
       url: "https://scholar.google.ca/citations?user=P9faoEQAAAAJ&hl=en"
 
-interests_col1:
-  - "Machine Learning & AI Development"
-  - "Data Pipelines & Predictive Modeling"
-  - "Computational Science"
+competencies:
+  - category: "Languages"
+    skills: "Python, SQL, C++, Bash, HTML/CSS"
+  - category: "AI & Data Science"
+    skills: "Scikit-Learn, XGBoost, Random Forest, Agentic RAG, Prompt Engineering, Pandas, NumPy"
+  - category: "Infrastructure & Tools"
+    skills: "Docker, FastAPI, Git, Linux, PyCharm, VS Code, uv Package Manager"
+  - category: "Domain Expertise"
+    skills: "Sports Analytics, 3D Mesh Modeling, Predictive Pipeline Architecture, Computational Science"
 
-interests_col2:
-  - "Sports Analytics & Statistical Modeling"
-  - "3D Graphics & Simulation"
-  - "High-Performance Computing"
+projects:
+  - name: "Sports Analytics Prediction App"
+    description: "Developed an end-to-end data pipeline and machine learning model stack utilizing XGBoost and Random Forest. Engineered features from historical NHL data to predict game outcomes and identify market betting discrepancies."
+    tools: ["Python", "SQL", "XGBoost", "FastAPI", "Docker"]
+    github: "https://github.com/ian-james"
+  - name: "Agentic RAG Orchestrator"
+    description: "Designed a self-correcting and self-evaluating data pipeline framework leveraging modern LLM agentic orchestration. Optimizes context retrieval from complex technical documentation to eliminate hallucinations."
+    tools: ["Python", "Agentic AI", "Vector DBs", "LangChain"]
+    github: ""
+
+publications:
+  - title: "Your Published Academic Paper Title or Dissertation Name"
+    authors: "J. Fraser, et al."
+    venue: "Journal of Computational Science / University of Guelph Repository"
+    year: "2023"
+    url: "https://scholar.google.ca"
+
+awards:
+  - title: "Academic Award or Scholarship"
+    institution: "University of Guelph"
+    year: "2021"
+  - title: "Graduate Fellowship"
+    institution: "Western University"
+    year: "2011"
+  - title: "Honors Distinction"
+    institution: "Saint Mary's University"
+    year: "2006"
 
 education:
   - degree: "Ph.D. Computational Science"
@@ -41,6 +69,6 @@ education:
     year: "2006"
 ---
 
-Experienced researcher capable of bridging the gap between academic research, data analytics, and production software. Proven track record of collaborating with multidisciplinary teams across healthcare, manufacturing, and education to resolve complex challenges through practical, leading-edge AI solutions. 
+Experienced researcher capable of bridging the gap between academic research, data analytics, and production software. Proven track record of collaborating with multidisciplinary teams across healthcare, manufacturing, and education to resolve complex challenges through practical, leading-edge AI solutions.
 
 **Current Technical Focus:** Actively designing and building Agentic AI orchestration frameworks and Agentic RAG architectures, focusing on self-evaluating and self-correcting data pipelines to support complex system requirements.
