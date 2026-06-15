@@ -24,7 +24,6 @@
             line-height: 1.6;
         }
 
-        /* Main asymmetric 20/80 layout split */
         .container {
             display: grid;
             grid-template-columns: 20fr 80fr;
@@ -33,7 +32,7 @@
             margin: 0 auto;
         }
 
-        /* Left Sidebar (20%) */
+        /* Left Sidebar */
         .sidebar {
             background: var(--card-bg);
             padding: 2rem;
@@ -41,6 +40,8 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             text-align: center;
             height: fit-content;
+            position: sticky;
+            top: 2rem;
         }
 
         .profile-img {
@@ -65,7 +66,7 @@
         .social-icons a { color: var(--text-muted); transition: color 0.2s; }
         .social-icons a:hover { color: var(--accent-color); }
 
-        /* Right Content Area (80%) */
+        /* Right Content Area */
         .main-content {
             display: flex;
             flex-direction: column;
@@ -81,9 +82,9 @@
 
         .summary-section h1 { margin-top: 0; font-size: 2.2rem; }
         
-        /* CV Download Buttons */
         .btn-container {
             display: flex;
+            flex-wrap: wrap;
             gap: 1rem;
             margin-top: 1.5rem;
         }
@@ -104,54 +105,77 @@
         .btn:hover { opacity: 0.9; }
         .btn-alt { background-color: #495057; }
 
-        /* Interests Section: Two Horizontal Columns */
-        .interests-grid {
+        /* Core Competencies Matrix */
+        .skills-matrix {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .skills-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 0.75rem;
+        }
+
+        .skills-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .skills-category { font-weight: 600; color: var(--text-color); }
+        .skills-list { color: var(--text-muted); }
+
+        /* Projects Section Grid */
+        .projects-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
             margin-top: 1rem;
         }
 
-        .interests-column ul {
-            margin: 0;
-            padding-left: 1.2rem;
+        .project-box {
+            border: 1px solid #e9ecef;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: #fafbfc;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .interests-column li {
-            margin-bottom: 0.5rem;
-        }
+        .project-box h4 { margin: 0 0 0.5rem 0; font-size: 1.15rem; color: var(--accent-color); }
+        .project-tag-container { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+        .project-tag { background: #e9ecef; color: #495057; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 500; }
 
-        /* Education Section: Three Horizontal Cards */
-        .education-grid {
+        /* Education & Awards Grids */
+        .horizontal-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
             margin-top: 1rem;
         }
 
-        .edu-box {
+        .item-box {
             border: 1px solid #e9ecef;
             padding: 1.5rem;
             border-radius: 8px;
             background-color: #fafbfc;
         }
 
-        .edu-box h4 { margin: 0 0 0.5rem 0; font-size: 1.1rem; color: var(--accent-color); }
-        .edu-box .institution { font-weight: 500; margin-bottom: 0.25rem; }
-        .edu-box .year { color: var(--text-muted); font-size: 0.9rem; }
+        .item-box h4 { margin: 0 0 0.5rem 0; font-size: 1.1rem; color: var(--accent-color); }
+        .item-subtext { font-weight: 500; margin-bottom: 0.25rem; }
+        .item-meta { color: var(--text-muted); font-size: 0.9rem; }
 
-        /* Responsive Design for smaller viewports */
         @media (max-width: 992px) {
             .container { grid-template-columns: 1fr; }
-            .education-grid { grid-template-columns: 1fr; }
-            .interests-grid { grid-template-columns: 1fr; }
+            .sidebar { position: relative; top: 0; }
+            .horizontal-grid, .projects-grid { grid-template-columns: 1fr; }
+            .skills-row { grid-template-columns: 1fr; gap: 0.25rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Left Sidebar (20%) -->
         <aside class="sidebar">
             {{ with .Params.sidebar }}
             <img src="{{ .avatar | relURL }}" alt="Profile Image" class="profile-img">
@@ -165,9 +189,7 @@
             {{ end }}
         </aside>
 
-        <!-- Right Main Content (80%) -->
         <main class="main-content">
-            <!-- Summary Section -->
             <section class="content-card summary-section">
                 <h1>{{ .Title }}</h1>
                 <div>{{ .Content | safeHTML }}</div>
@@ -175,40 +197,82 @@
                 <div class="btn-container">
                     {{ with .Params.cv_pdf }}<a href="{{ . | relURL }}" class="btn" download><i class="fas fa-file-pdf"></i> Download CV (PDF)</a>{{ end }}
                     {{ with .Params.cv_doc }}<a href="{{ . | relURL }}" class="btn btn-alt" download><i class="fas fa-file-word"></i> Download CV (Word)</a>{{ end }}
-                    {{ with .Params.cv_long_pdf }}<a href="{{ . | relURL }}" class="btn btn-alt" download><i class="fas fa-file-pdf"></i> Download Academic CV (PDF)</a>{{ end }}
+                    {{ with .Params.cv_long_pdf }}<a href="{{ . | relURL }}" class="btn btn-alt" download><i class="fas fa-file-pdf"></i> Academic CV (PDF)</a>{{ end }}
                 </div>
             </section>
 
-            <!-- Interests Vertical Block containing 2 Columns -->
             <section class="content-card">
-                <h2>Interests</h2>
-                <div class="interests-grid">
-                    <div class="interests-column">
-                        <ul>
-                            {{ range .Params.interests_col1 }}
-                            <li>{{ . }}</li>
-                            {{ end }}
-                        </ul>
+                <h2>Core Competencies</h2>
+                <div class="skills-matrix">
+                    {{ range .Params.competencies }}
+                    <div class="skills-row">
+                        <div class="skills-category">{{ .category }}</div>
+                        <div class="skills-list">{{ .skills }}</div>
                     </div>
-                    <div class="interests-column">
-                        <ul>
-                            {{ range .Params.interests_col2 }}
-                            <li>{{ . }}</li>
-                            {{ end }}
-                        </ul>
-                    </div>
+                    {{ end }}
                 </div>
             </section>
 
-            <!-- Education Vertical Block containing 3 Cards -->
+            <section class="content-card">
+                <h2>Featured Projects</h2>
+                <div class="projects-grid">
+                    {{ range .Params.projects }}
+                    <div class="project-box">
+                        <div>
+                            <h4>{{ .name }}</h4>
+                            <p style="margin: 0 0 1rem 0; font-size: 0.95rem; color: var(--text-color);">{{ .description }}</p>
+                        </div>
+                        <div>
+                            <div class="project-tag-container">
+                                {{ range .tools }}
+                                <span class="project-tag">{{ . }}</span>
+                                {{ end }}
+                            </div>
+                            {{ if .github }}
+                            <a href="{{ .github }}" target="_blank" style="font-size: 0.9rem; color: var(--text-muted); text-decoration: none;"><i class="fab fa-github"></i> View Source</a>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+            </section>
+
+            <section class="content-card">
+                <h2>Publications & Research</h2>
+                <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1rem;">
+                    {{ range .Params.publications }}
+                    <div style="border-left: 3px solid var(--accent-color); padding-left: 1rem;">
+                        <h4 style="margin: 0 0 0.25rem 0;">
+                            {{ if .url }}<a href="{{ .url }}" target="_blank" style="text-decoration: none; color: inherit;">{{ .title }} <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a>{{ else }}{{ .title }}{{ end }}
+                        </h4>
+                        <div style="font-size: 0.95rem; font-weight: 500;">{{ .authors }}</div>
+                        <div style="color: var(--text-muted); font-size: 0.9rem;">{{ .venue }} &bull; {{ .year }}</div>
+                    </div>
+                    {{ end }}
+                </div>
+            </section>
+
+            <section class="content-card">
+                <h2>Awards & Honors</h2>
+                <div class="horizontal-grid">
+                    {{ range .Params.awards }}
+                    <div class="item-box">
+                        <h4>{{ .title }}</h4>
+                        <div class="item-subtext">{{ .institution }}</div>
+                        <div class="item-meta">{{ .year }}</div>
+                    </div>
+                    {{ end }}
+                </div>
+            </section>
+
             <section class="content-card">
                 <h2>Education</h2>
-                <div class="education-grid">
+                <div class="horizontal-grid">
                     {{ range .Params.education }}
-                    <div class="edu-box">
+                    <div class="item-box">
                         <h4>{{ .degree }}</h4>
-                        <div class="institution">{{ .institution }}</div>
-                        <div class="year">{{ .year }}</div>
+                        <div class="item-subtext">{{ .institution }}</div>
+                        <div class="item-meta">{{ .year }}</div>
                     </div>
                     {{ end }}
                 </div>
