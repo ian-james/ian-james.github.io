@@ -63,7 +63,7 @@
             font-size: 1.4rem;
         }
 
-        .social-icons a { color: var(--text-muted); transition: color 0.2s; }
+        .social-icons a { color: var(--text-muted); transition: color 0.2s; text-decoration: none; }
         .social-icons a:hover { color: var(--accent-color); }
 
         /* Navigation Menu inside Sidebar */
@@ -81,14 +81,20 @@
             color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
-            padding: 0.5rem;
+            padding: 0.5rem 0.75rem;
             border-radius: 6px;
-            transition: background 0.2s;
+            transition: background 0.2s, color 0.2s;
         }
 
         .nav-menu a:hover {
             background: #e9ecef;
             color: var(--accent-color);
+        }
+
+        .nav-menu a.active {
+            background: #e9ecef;
+            color: var(--accent-color);
+            font-weight: 600;
         }
 
         /* Right Content Area */
@@ -180,20 +186,20 @@
     <div class="container">
         <aside class="sidebar">
             {{ with .Site.GetPage "/" }}
-            {{ with .Params.sidebar }}
-            <img src="{{ .avatar | relURL }}" alt="Profile Image" class="profile-img">
-            <h2>{{ .name }}</h2>
-            <p>{{ .description }}</p>
-            <div class="social-icons">
-                {{ range .socials }}
-                <a href="{{ .url }}" target="_blank" title="{{ .platform }}"><i class="{{ .icon }}"></i></a>
+                {{ with .Params.sidebar }}
+                <img src="{{ .avatar | relURL }}" alt="Profile Image" class="profile-img">
+                <h2>{{ .name }}</h2>
+                <p>{{ .description }}</p>
+                <div class="social-icons">
+                    {{ range .socials }}
+                    <a href="{{ .url }}" target="_blank" title="{{ .platform }}"><i class="{{ .icon }}"></i></a>
+                    {{ end }}
+                </div>
                 {{ end }}
-            </div>
-            {{ end }}
             {{ end }}
 
             <nav class="nav-menu">
-                <a href="{{ "" | relURL }}"><i class="fas fa-user-alt"></i> About Me</a>
+                <a href="{{ "" | relURL }}" class="active"><i class="fas fa-user-alt"></i> About Me</a>
                 <a href="{{ "projects/" | relURL }}"><i class="fas fa-code"></i> Featured Projects</a>
                 <a href="{{ "publications/" | relURL }}"><i class="fas fa-book"></i> Publications</a>
                 <a href="{{ "awards/" | relURL }}"><i class="fas fa-trophy"></i> Awards</a>
