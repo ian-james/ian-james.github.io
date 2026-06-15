@@ -77,14 +77,11 @@
             transition: background 0.2s, color 0.2s;
         }
         .nav-menu a:hover { background: #e9ecef; color: var(--accent-color); }
-        
-        /* Highlight the active tab if it matches the current page URL context */
         .nav-menu a.active { background: #e9ecef; color: var(--accent-color); font-weight: 600; }
 
         .main-content { display: flex; flex-direction: column; gap: 2.5rem; }
         .content-card { background: var(--card-bg); padding: 2.5rem; border-radius: var(--border-radius); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         
-        /* Specific content type arrangements */
         .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
         .project-box { border: 1px solid #e9ecef; padding: 1.5rem; border-radius: 8px; background-color: #fafbfc; display: flex; flex-direction: column; justify-content: space-between; }
         .project-tag-container { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
@@ -117,10 +114,10 @@
             {{ end }}
 
             <nav class="nav-menu">
-                <a href="{{ "" | relURL }}"><i class="fas fa-user-alt"></i> About Me</a>
-                <a href="{{ "projects/" | relURL }}" class="{{ if eq .Params.contentType "projects" }}active{{ end }}"><i class="fas fa-code"></i> Featured Projects</a>
-                <a href="{{ "publications/" | relURL }}" class="{{ if eq .Params.contentType "publications" }}active{{ end }}"><i class="fas fa-book"></i> Publications</a>
-                <a href="{{ "awards/" | relURL }}" class="{{ if eq .Params.contentType "awards" }}active{{ end }}"><i class="fas fa-trophy"></i> Awards</a>
+                <a href="{{ "" | absURL }}"><i class="fas fa-user-alt"></i> About Me</a>
+                <a href="{{ "projects/" | absURL }}" class="{{ if eq .Params.contentType "projects" }}active{{ end }}"><i class="fas fa-code"></i> Featured Projects</a>
+                <a href="{{ "publications/" | absURL }}" class="{{ if eq .Params.contentType "publications" }}active{{ end }}"><i class="fas fa-book"></i> Publications</a>
+                <a href="{{ "awards/" | absURL }}" class="{{ if eq .Params.contentType "awards" }}active{{ end }}"><i class="fas fa-trophy"></i> Awards</a>
             </nav>
         </aside>
 
