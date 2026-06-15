@@ -115,7 +115,7 @@
                 </div>
             {{ end }}
 
-            <nav class="nav-menu">
+              <nav class="nav-menu">
                 <a href="{{ "" | absURL }}"><i class="fas fa-user-alt"></i> About Me</a>
                 <a href="{{ "projects/" | absURL }}" class="{{ if eq .Params.contentType "projects" }}active{{ end }}"><i class="fas fa-code"></i> Featured Projects</a>
                 <a href="{{ "publications/" | absURL }}" class="{{ if eq .Params.contentType "publications" }}active{{ end }}"><i class="fas fa-book"></i> Publications</a>
@@ -127,7 +127,7 @@
             <section class="content-card">
                 <h1>{{ .Title }}</h1>
                 
-                {{ if eq .Params.contentType "projects" }}
+                {{ if eq .Type "projects" }}
                 <div class="projects-grid">
                     {{ range .Params.projects }}
                     <div class="project-box">
@@ -147,7 +147,7 @@
                     {{ end }}
                 </div>
 
-                {{ else if eq .Params.contentType "publications" }}
+                {{ else if eq .Type "publications" }}
                 <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem;">
                     {{ range .Params.publications }}
                     <div style="border-left: 3px solid var(--accent-color); padding-left: 1rem;">
@@ -160,7 +160,7 @@
                     {{ end }}
                 </div>
 
-                {{ else if eq .Params.contentType "awards" }}
+                {{ else if eq .Type "awards" }}
                 <div class="horizontal-grid">
                     {{ range .Params.awards }}
                     <div class="item-box">
