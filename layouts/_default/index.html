@@ -170,7 +170,7 @@
             <!-- Summary Section -->
             <section class="content-card summary-section">
                 <h1>{{ .Title }}</h1>
-                <div>{{ .Content }}</div>
+                <div>{{ .Content | safeHTML }}</div>
                 
                 <div class="btn-container">
                     {{ with .Params.cv_pdf }}<a href="{{ . | relURL }}" class="btn" download><i class="fas fa-file-pdf"></i> Download CV (PDF)</a>{{ end }}
