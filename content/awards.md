@@ -2,6 +2,7 @@
 title: "Awards & Honors"
 type: "awards"
 layout: "single"
+contentType: "awards"
 
 awards:
   - title: "Doctoral Post-Graduate Scholarship / Fellowship"
