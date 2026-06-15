@@ -2,6 +2,7 @@
 title: "Selected Publications & Research"
 type: "publications"
 layout: "single"
+contentType: "publications"
 
 publications:
   - title: "An Evolutionary Approach to Three-Dimensional Surface Reconstruction from Unorganized Point Clouds"
