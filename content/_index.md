@@ -2,7 +2,7 @@
 title: "About Me"
 cv_pdf: "assets/resume.pdf"
 cv_doc: "assets/resume.docx"
-cv_long_pdf: "assets/long_cv_resume.pdf"
+cv_long_pdf: "assets/long_academic_resume.pdf"
 
 sidebar:
   name: "Jamey Fraser"
@@ -25,9 +25,9 @@ competencies:
   - category: "AI & Data Science"
     skills: "Scikit-Learn, XGBoost, Random Forest, Agentic RAG, Prompt Engineering, Pandas, NumPy"
   - category: "Infrastructure & Tools"
-    skills: "Docker, FastAPI, Git, Linux, PyCharm, VS Code, uv Package Manager"
+    skills: "Docker, FastAPI, Git, Linux, PyCharm, uv Package Manager"
   - category: "Domain Expertise"
-    skills: "Sports Analytics, 3D Mesh Modeling, Predictive Pipeline Architecture, Computational Science"
+    skills: "Sports Analytics, Pedagogy, Predictive Pipeline Architecture, Computational Science"
 
 education:
   - degree: "Ph.D. Computational Science"
