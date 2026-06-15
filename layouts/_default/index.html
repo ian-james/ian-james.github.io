@@ -185,8 +185,8 @@
 
     <div class="container">
         <aside class="sidebar">
-            {{ with .Site.GetPage "/" }}
-                {{ with .Params.sidebar }}
+            {{ $home := .Site.GetPage "/" }}
+            {{ with $home.Params.sidebar }}
                 <img src="{{ .avatar | relURL }}" alt="Profile Image" class="profile-img">
                 <h2>{{ .name }}</h2>
                 <p>{{ .description }}</p>
@@ -195,7 +195,6 @@
                     <a href="{{ .url }}" target="_blank" title="{{ .platform }}"><i class="{{ .icon }}"></i></a>
                     {{ end }}
                 </div>
-                {{ end }}
             {{ end }}
 
             <nav class="nav-menu">
