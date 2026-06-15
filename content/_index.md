@@ -41,8 +41,6 @@ education:
     year: "2006"
 ---
 
-Experienced researcher capable of bridging the gap between academic papers, data analytics, and production software. With a proven track record
-leading and engaging with multidisciplinary teams in healthcare, manufacturing, and education to resolve complex challenges through practical,
-leading-edge AI solutions. Actively developing environments agentic environment and looking to Current Technical Focus: Actively researching and
-developing Agentic AI orchestration and Agentic RAG architectures to produce self-evaluating and correcting pipelines to support complex client
-needs.
+Experienced researcher capable of bridging the gap between academic research, data analytics, and production software. Proven track record of collaborating with multidisciplinary teams across healthcare, manufacturing, and education to resolve complex challenges through practical, leading-edge AI solutions. 
+
+**Current Technical Focus:** Actively designing and building Agentic AI orchestration frameworks and Agentic RAG architectures, focusing on self-evaluating and self-correcting data pipelines to support complex system requirements.
