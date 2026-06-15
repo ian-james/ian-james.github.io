@@ -66,6 +66,31 @@
         .social-icons a { color: var(--text-muted); transition: color 0.2s; }
         .social-icons a:hover { color: var(--accent-color); }
 
+        /* Navigation Menu inside Sidebar */
+        .nav-menu {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            text-align: left;
+            border-top: 1px solid #e9ecef;
+            padding-top: 1.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .nav-menu a:hover {
+            background: #e9ecef;
+            color: var(--accent-color);
+        }
+
         /* Right Content Area */
         .main-content {
             display: flex;
@@ -124,29 +149,6 @@
         .skills-category { font-weight: 600; color: var(--text-color); }
         .skills-list { color: var(--text-muted); }
 
-        /* Projects Section Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .project-box {
-            border: 1px solid #e9ecef;
-            padding: 1.5rem;
-            border-radius: 8px;
-            background-color: #fafbfc;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .project-box h4 { margin: 0 0 0.5rem 0; font-size: 1.15rem; color: var(--accent-color); }
-        .project-tag-container { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
-        .project-tag { background: #e9ecef; color: #495057; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 500; }
-
-        /* Education & Awards Grids */
         .horizontal-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -168,7 +170,7 @@
         @media (max-width: 992px) {
             .container { grid-template-columns: 1fr; }
             .sidebar { position: relative; top: 0; }
-            .horizontal-grid, .projects-grid { grid-template-columns: 1fr; }
+            .horizontal-grid { grid-template-columns: 1fr; }
             .skills-row { grid-template-columns: 1fr; gap: 0.25rem; }
         }
     </style>
@@ -177,6 +179,7 @@
 
     <div class="container">
         <aside class="sidebar">
+            {{ with .Site.GetPage "/" }}
             {{ with .Params.sidebar }}
             <img src="{{ .avatar | relURL }}" alt="Profile Image" class="profile-img">
             <h2>{{ .name }}</h2>
@@ -187,6 +190,14 @@
                 {{ end }}
             </div>
             {{ end }}
+            {{ end }}
+
+            <nav class="nav-menu">
+                <a href="{{ "" | relURL }}"><i class="fas fa-user-alt"></i> About Me</a>
+                <a href="{{ "projects/" | relURL }}"><i class="fas fa-code"></i> Featured Projects</a>
+                <a href="{{ "publications/" | relURL }}"><i class="fas fa-book"></i> Publications</a>
+                <a href="{{ "awards/" | relURL }}"><i class="fas fa-trophy"></i> Awards</a>
+            </nav>
         </aside>
 
         <main class="main-content">
@@ -208,58 +219,6 @@
                     <div class="skills-row">
                         <div class="skills-category">{{ .category }}</div>
                         <div class="skills-list">{{ .skills }}</div>
-                    </div>
-                    {{ end }}
-                </div>
-            </section>
-
-            <section class="content-card">
-                <h2>Featured Projects</h2>
-                <div class="projects-grid">
-                    {{ range .Params.projects }}
-                    <div class="project-box">
-                        <div>
-                            <h4>{{ .name }}</h4>
-                            <p style="margin: 0 0 1rem 0; font-size: 0.95rem; color: var(--text-color);">{{ .description }}</p>
-                        </div>
-                        <div>
-                            <div class="project-tag-container">
-                                {{ range .tools }}
-                                <span class="project-tag">{{ . }}</span>
-                                {{ end }}
-                            </div>
-                            {{ if .github }}
-                            <a href="{{ .github }}" target="_blank" style="font-size: 0.9rem; color: var(--text-muted); text-decoration: none;"><i class="fab fa-github"></i> View Source</a>
-                            {{ end }}
-                        </div>
-                    </div>
-                    {{ end }}
-                </div>
-            </section>
-
-            <section class="content-card">
-                <h2>Publications & Research</h2>
-                <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1rem;">
-                    {{ range .Params.publications }}
-                    <div style="border-left: 3px solid var(--accent-color); padding-left: 1rem;">
-                        <h4 style="margin: 0 0 0.25rem 0;">
-                            {{ if .url }}<a href="{{ .url }}" target="_blank" style="text-decoration: none; color: inherit;">{{ .title }} <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a>{{ else }}{{ .title }}{{ end }}
-                        </h4>
-                        <div style="font-size: 0.95rem; font-weight: 500;">{{ .authors }}</div>
-                        <div style="color: var(--text-muted); font-size: 0.9rem;">{{ .venue }} &bull; {{ .year }}</div>
-                    </div>
-                    {{ end }}
-                </div>
-            </section>
-
-            <section class="content-card">
-                <h2>Awards & Honors</h2>
-                <div class="horizontal-grid">
-                    {{ range .Params.awards }}
-                    <div class="item-box">
-                        <h4>{{ .title }}</h4>
-                        <div class="item-subtext">{{ .institution }}</div>
-                        <div class="item-meta">{{ .year }}</div>
                     </div>
                     {{ end }}
                 </div>
