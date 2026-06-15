@@ -3,6 +3,7 @@ title: "Featured Engineering Projects"
 type: "projects"
 layout: "single"
 contentType: "projects"
+url: "/projects/"
 
 projects:
   - name: "Sports Analytics Prediction App"
