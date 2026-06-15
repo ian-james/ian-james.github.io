@@ -5,19 +5,19 @@ cv_doc: "assets/resume.docx"
 cv_long_pdf: "assets/long_cv_resume"
 
 sidebar:
-  name: "Your Name"
+  name: "Jamey Fraser"
   avatar: "assets/me.jpg"
   description: "Research Software Developer & Data Analyst"
   socials:
     - platform: "GitHub"
       icon: "fab fa-github"
-      url: "https://github.com/your-username"
+      url: "https://github.com/ian-james"
     - platform: "LinkedIn"
       icon: "fab fa-linkedin"
-      url: "https://linkedin.com/in/your-profile"
+      url: "https://www.linkedin.com/in/jamey-fraser-ph-d-7a48716/"
     - platform: "Google Scholar"
       icon: "fas fa-graduation-cap"
-      url: "https://scholar.google.com"
+      url: "https://scholar.google.ca/citations?user=P9faoEQAAAAJ&hl=en"
 
 interests_col1:
   - "Machine Learning & AI Development"
@@ -41,4 +41,8 @@ education:
     year: "2006"
 ---
 
-Write your brief, high-level professional narrative or summary paragraph right here. This content automatically fills out the top section of your main 80% column, cleanly framing your expertise and current technical pursuits.
+Experienced researcher capable of bridging the gap between academic papers, data analytics, and production software. With a proven track record
+leading and engaging with multidisciplinary teams in healthcare, manufacturing, and education to resolve complex challenges through practical,
+leading-edge AI solutions. Actively developing environments agentic environment and looking to Current Technical Focus: Actively researching and
+developing Agentic AI orchestration and Agentic RAG architectures to produce self-evaluating and correcting pipelines to support complex client
+needs.
