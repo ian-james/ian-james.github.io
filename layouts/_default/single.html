@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }} | {{ .Site.Title }}</title>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root { 
@@ -115,11 +114,11 @@
                 </div>
             {{ end }}
 
-              <nav class="nav-menu">
+            <nav class="nav-menu">
                 <a href="{{ "" | absURL }}"><i class="fas fa-user-alt"></i> About Me</a>
-                <a href="{{ "projects/" | absURL }}" class="{{ if eq .Params.contentType "projects" }}active{{ end }}"><i class="fas fa-code"></i> Featured Projects</a>
-                <a href="{{ "publications/" | absURL }}" class="{{ if eq .Params.contentType "publications" }}active{{ end }}"><i class="fas fa-book"></i> Publications</a>
-                <a href="{{ "awards/" | absURL }}" class="{{ if eq .Params.contentType "awards" }}active{{ end }}"><i class="fas fa-trophy"></i> Awards</a>
+                <a href="{{ "projects/" | absURL }}" class="{{ if eq .Type "projects" }}active{{ end }}"><i class="fas fa-code"></i> Featured Projects</a>
+                <a href="{{ "publications/" | absURL }}" class="{{ if eq .Type "publications" }}active{{ end }}"><i class="fas fa-book"></i> Publications</a>
+                <a href="{{ "awards/" | absURL }}" class="{{ if eq .Type "awards" }}active{{ end }}"><i class="fas fa-trophy"></i> Awards</a>
             </nav>
         </aside>
 
