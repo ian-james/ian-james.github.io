@@ -3,6 +3,7 @@ title: "Awards & Honors"
 type: "awards"
 layout: "single"
 contentType: "awards"
+url: "/awards/"
 
 awards:
   - title: "Doctoral Post-Graduate Scholarship / Fellowship"
