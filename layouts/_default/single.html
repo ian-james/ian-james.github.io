@@ -88,6 +88,197 @@
         .project-box { border: 1px solid #e9ecef; padding: 1.5rem; border-radius: 8px; background-color: #fafbfc; display: flex; flex-direction: column; justify-content: space-between; }
         .project-tag-container { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
         .project-tag { background: #e9ecef; color: #495057; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; }
+        .horizontal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .item-box { border: 1px solid #e9ecef; padding: 1.5rem; border-radius: 8px; background-color: #fafbfc; }
+        
+        /* Timeline specific design elements */
+        .timeline-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem; position: relative; }
+        .timeline-item { display: grid; grid-template-columns: 100px 1fr; gap: 1rem; border-bottom: 1px dashed #e9ecef; padding-bottom: 1rem; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-year { font-weight: 700; color: var(--accent-color); font-size: 1.1rem; }
+
+        @media (max-width: 992px) { 
+            .container { grid-template-columns: 1fr; } 
+            .sidebar { position: relative; top: 0; } 
+            .horizontal-grid, .projects-grid { grid-template-columns: 1fr; } 
+            .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        {{ partial "sidebar.html" . }}
+        
+        <main class="main-content">
+            <section class="content-card">
+                <h1>{{ .Title }}</h1>
+                
+                <div class="markdown-body">
+                    {{ .Content }}
+                </div>
+
+                {{ if eq .Type "projects" }}
+                <div class="projects-grid">
+                    {{ range .Params.projects }}
+                    <div class="project-box">
+                        <div>
+                            <h4 style="margin:0 0 0.5rem 0; color:var(--accent-color); font-size:1.2rem;">{{ .name }}</h4>
+                            <p style="margin:0; font-size:0.95rem;">{{ .description }}</p>
+                        </div>
+                        <div>
+                            <div class="project-tag-container">
+                                {{ range .tools }} <span class="project-tag">{{ . }}</span> {{ end }}
+                            </div>
+                            {{ if .github }}
+                            <div style="margin-top:1rem;"><a href="{{ .github }}" target="_blank" style="text-decoration:none; color:var(--text-muted); font-size:0.9rem;"><i class="fab fa-github"></i> View Code</a></div>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+
+                {{ else if eq .Type "publications" }}
+                <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem;">
+                    {{ range .Params.publications }}
+                    <div style="border-left: 3px solid var(--accent-color); padding-left: 1rem;">
+                        <h4 style="margin: 0 0 0.25rem 0;">
+                            {{ if .url }}<a href="{{ .url }}" target="_blank" style="text-decoration: none; color: inherit;">{{ .title }} <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a>{{ else }}{{ .title }}{{ end }}
+                        </h4>
+                        <div style="font-size: 0.95rem; font-weight: 500;">{{ .authors }}</div>
+                        <div style="color: var(--text-muted); font-size: 0.9rem;">{{ .venue }} &bull; {{ .year }}</div>
+                    </div>
+                    {{ end }}
+                </div>
+
+                {{ else if eq .Type "awards" }}
+                <div class="horizontal-grid">
+                    {{ range .Params.awards }}
+                    <div class="item-box">
+                        <h4 style="margin:0 0 0.5rem 0; color:var(--accent-color);">{{ .title }}</h4>
+                        <div style="font-weight:500; font-size:0.95rem;">{{ .institution }}</div>
+                        <div style="color:var(--text-muted); font-size:0.9rem;">{{ .year }}</div>
+                    </div>
+                    {{ end }}
+                </div>
+
+                {{ else if eq .Type "research_interests" }}
+                <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem;">
+                    {{ range .Params.research_interests }}
+                    <div style="border-left: 3px solid var(--accent-color); padding-left: 1rem;">
+                        <h4 style="margin: 0 0 0.25rem 0; color: var(--accent-color);">{{ .topic }}</h4>
+                        <p style="margin: 0; font-size: 0.95rem; color: var(--text-color);">{{ .description }}</p>
+                    </div>
+                    {{ end }}
+                </div>
+
+                {{ else if eq .Type "timeline" }}
+                <div class="timeline-list">
+                    {{ range .Params.timeline }}
+                    <div class="timeline-item">
+                        <div class="timeline-year">{{ .year }}</div>
+                        <div class="timeline-event">{{ .event }}</div>
+                    </div>
+                    {{ end }}
+                </div>
+                {{ end }}
+                
+            </section>
+        </main>
+    </div>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root { 
+            --bg-color: #f8f9fa; 
+            --card-bg: #ffffff; 
+            --text-color: #212529; 
+            --text-muted: #6c757d; 
+            --accent-color: #007bc2; 
+            --border-radius: 12px; 
+        }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            margin: 0; 
+            padding: 2rem; 
+            line-height: 1.6; 
+        }
+        .container { 
+            display: grid; 
+            grid-template-columns: 20fr 80fr; 
+            gap: 2.5rem; 
+            max-width: 1300px; 
+            margin: 0 auto; 
+        }
+        .sidebar { 
+            background: var(--card-bg); 
+            padding: 2rem; 
+            border-radius: var(--border-radius); 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            text-align: center; 
+            height: fit-content; 
+            position: sticky; 
+            top: 2rem; 
+        }
+        .profile-img { 
+            width: 150px; 
+            height: 150px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            margin-bottom: 1.5rem; 
+            border: 3px solid var(--accent-color); 
+        }
+        .sidebar h2 { margin: 0 0 0.5rem 0; font-size: 1.4rem; }
+        .sidebar p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        
+        .social-icons { 
+            display: flex; 
+            justify-content: center; 
+            gap: 1.2rem; 
+            font-size: 1.4rem; 
+        }
+        .social-icons a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .social-icons a:hover { color: var(--accent-color); }
+
+        .nav-menu { 
+            margin-top: 2rem; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 0.75rem; 
+            text-align: left; 
+            border-top: 1px solid #e9ecef; 
+            padding-top: 1.5rem; 
+        }
+        .nav-menu a { 
+            color: var(--text-color); 
+            text-decoration: none; 
+            font-weight: 500; 
+            padding: 0.5rem 0.75rem; 
+            border-radius: 6px; 
+            transition: background 0.2s, color 0.2s;
+        }
+        .nav-menu a:hover { background: #e9ecef; color: var(--accent-color); }
+        .nav-menu a.active { background: #e9ecef; color: var(--accent-color); font-weight: 600; }
+
+        .main-content { display: flex; flex-direction: column; gap: 2.5rem; }
+        .content-card { background: var(--card-bg); padding: 2.5rem; border-radius: var(--border-radius); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        
+        .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+        .project-box { border: 1px solid #e9ecef; padding: 1.5rem; border-radius: 8px; background-color: #fafbfc; display: flex; flex-direction: column; justify-content: space-between; }
+        .project-tag-container { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+        .project-tag { background: #e9ecef; color: #495057; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; }
         .horizontal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
         .item-box { border: 1px solid #e9ecef; padding: 1.5rem; border-radius: 8px; background-color: #fafbfc; }
         
