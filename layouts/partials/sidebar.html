@@ -12,25 +12,18 @@
   {{ end }}
 
   <nav class="nav-menu">
-      <!-- About Me (Home Index Page) -->
-      <a href="{{ "" | absURL }}" class="{{ if eq .Kind "home" }}active{{ end }}"><i class="fas fa-user-alt"></i> About Me</a>
+      <a href="{{ "/" | relURL }}" class="{{ if eq .Kind "home" }}active{{ end }}"><i class="fas fa-user-alt"></i> About Me</a>
       
-      <!-- Professional Experience -->
-      <a href="{{ "experience/" | absURL }}" class="{{ if or (eq .Type "experience") (eq .Params.contentType "experience") }}active{{ end }}"><i class="fas fa-briefcase"></i> Professional Experience</a>
+      <a href="{{ "/experience/" | relURL }}" class="{{ if eq .Type "experience" }}active{{ end }}"><i class="fas fa-briefcase"></i> Professional Experience</a>
       
-      <!-- Featured Engineering Projects -->
-      <a href="{{ "projects/" | absURL }}" class="{{ if or (eq .Type "projects") (eq .Params.contentType "projects") }}active{{ end }}"><i class="fas fa-code"></i> Featured Projects</a>
+      <a href="{{ "/projects/" | relURL }}" class="{{ if eq .Type "projects" }}active{{ end }}"><i class="fas fa-code"></i> Featured Projects</a>
       
-      <!-- Research Interests -->
-      <a href="{{ "research-interests/" | absURL }}" class="{{ if or (eq .Type "research_interests") (eq .Params.type "research_interests") }}active{{ end }}"><i class="fas fa-microscope"></i> Research Interests</a>
+      <a href="{{ "/research-interests/" | relURL }}" class="{{ if eq .Type "research_interests" }}active{{ end }}"><i class="fas fa-microscope"></i> Research Interests</a>
       
-      <!-- Selected Publications -->
-      <a href="{{ "publications/" | absURL }}" class="{{ if or (eq .Type "publications") (eq .Params.contentType "publications") }}active{{ end }}"><i class="fas fa-book"></i> Publications</a>
+      <a href="{{ "/publications/" | relURL }}" class="{{ if eq .Type "publications" }}active{{ end }}"><i class="fas fa-book"></i> Publications</a>
       
-      <!-- Awards & Honors -->
-      <a href="{{ "awards/" | absURL }}" class="{{ if or (eq .Type "awards") (eq .Params.contentType "awards") }}active{{ end }}"><i class="fas fa-trophy"></i> Awards</a>
+      <a href="{{ "/awards/" | relURL }}" class="{{ if eq .Type "awards" }}active{{ end }}"><i class="fas fa-trophy"></i> Awards</a>
       
-      <!-- Professional Timeline -->
-      <a href="{{ "timeline/" | absURL }}" class="{{ if or (eq .Type "timeline") (eq .Params.type "timeline") }}active{{ end }}"><i class="fas fa-history"></i> Timeline</a>
+      <a href="{{ "/timeline/" | relURL }}" class="{{ if eq .Type "timeline" }}active{{ end }}"><i class="fas fa-history"></i> Timeline</a>
   </nav>
 </aside>
