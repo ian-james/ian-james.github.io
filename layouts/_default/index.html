@@ -3,6 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description">
+    <meta property="og:title">
+    <meta property="og:description">
+    <meta property="og:image">
+    <title>{{ .Site.Title }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #212529;
+            --text-muted: #6c757d;
+            --accent-color: #007bc2;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 20fr 80fr;
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Left Sidebar */
+        .sidebar {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 3px solid var(--accent-color);
+        }
+
+        .sidebar h2 { margin: 0 0 0.5rem 0; font-size: 1.4rem; }
+        .sidebar p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            font-size: 1.4rem;
+        }
+
+        .social-icons a { color: var(--text-muted); transition: color 0.2s; text-decoration: none; }
+        .social-icons a:hover { color: var(--accent-color); }
+
+        /* Navigation Menu inside Sidebar */
+        .nav-menu {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            text-align: left;
+            border-top: 1px solid #e9ecef;
+            padding-top: 1.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .nav-menu a:hover {
+            background: #e9ecef;
+            color: var(--accent-color);
+        }
+
+        .nav-menu a.active {
+            background: #e9ecef;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Right Content Area */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .content-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .summary-section h1 { margin-top: 0; font-size: 2.2rem; }
+        
+        .btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover { opacity: 0.9; }
+        .btn-alt { background-color: #495057; }
+
+        /* Core Competencies Matrix */
+        .skills-matrix {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .skills-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 0.75rem;
+        }
+
+        .skills-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .skills-category { font-weight: 600; color: var(--text-color); }
+        .skills-list { color: var(--text-muted); }
+
+        .horizontal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .item-box {
+            border: 1px solid #e9ecef;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: #fafbfc;
+        }
+
+        .item-box h4 { margin: 0 0 0.5rem 0; font-size: 1.1rem; color: var(--accent-color); }
+        .item-subtext { font-weight: 500; margin-bottom: 0.25rem; }
+        .item-meta { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* Project Metrics Additions */
+        .metric-value { font-size: 1.8rem; font-weight: 700; color: var(--accent-color); }
+        .metric-label { font-weight: 600; margin: 0.25rem 0; }
+        .metric-detail { color: var(--text-muted); font-size: 0.85rem; }
+
+        /* Timeline Additions */
+        .timeline-container { position: relative; padding-left: 1.5rem; margin-top: 1rem; }
+        .timeline-container::before { content: ''; position: absolute; left: 5px; top: 0; bottom: 0; width: 2px; background: #e9ecef; }
+        .timeline-item { position: relative; margin-bottom: 1.25rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -20px; top: 7px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-color); }
+        .timeline-year { font-weight: 700; color: var(--accent-color); margin-right: 0.5rem; }
+
+        @media (max-width: 992px) {
+            .container { grid-template-columns: 1fr; }
+            .sidebar { position: relative; top: 0; }
+            .horizontal-grid { grid-template-columns: 1fr; }
+            .skills-row { grid-template-columns: 1fr; gap: 0.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+       {{ partial "sidebar.html" . }}
+        
+        <main class="main-content">
+            <!-- About Me Summary Section -->
+            <section class="content-card summary-section">
+                <h1>{{ .Title }}</h1>
+                <div>{{ .Content | safeHTML }}</div>
+                
+                <div class="btn-container">
+                    {{ with .Params.cv_pdf }}<a href="{{ . | relURL }}" class="btn" download><i class="fas fa-file-pdf"></i> Download CV (PDF)</a>{{ end }}
+                    {{ with .Params.cv_doc }}<a href="{{ . | relURL }}" class="btn btn-alt" download><i class="fas fa-file-word"></i> Download CV (Word)</a>{{ end }}
+                    {{ with .Params.cv_long_pdf }}<a href="{{ . | relURL }}" class="btn btn-alt" download><i class="fas fa-file-pdf"></i> Academic CV (PDF)</a>{{ end }}
+                </div>
+            </section>
+
+            <!-- Project Impact Metrics Block (Pulled dynamically from content/projects.md) -->
+            {{ with .Site.GetPage "/projects" }}
+            {{ if .Params.metrics }}
+            <section class="content-card">
+                <h2>Project Impact Metrics</h2>
+                <div class="horizontal-grid">
+                    {{ range .Params.metrics }}
+                    <div class="item-box">
+                        <div class="metric-value">{{ .value }}</div>
+                        <div class="metric-label">{{ .label }}</div>
+                        <div class="metric-detail">{{ .detail }}</div>
+                    </div>
+                    {{ end }}
+                </div>
+            </section>
+            {{ end }}
+            {{ end }}
+
+            <!-- Core Competencies Section -->
+            <section class="content-card">
+                <h2>Core Competencies</h2>
+                <div class="skills-matrix">
+                    {{ range .Params.competencies }}
+                    <div class="skills-row">
+                        <div class="skills-category">{{ .category }}</div>
+                        <div class="skills-list">{{ .skills }}</div>
+                    </div>
+                    {{ end }}
+                </div>
+            </section>
+
+            <!-- Research Interests Block (Pulled dynamically from content/research-interests.md) -->
+            {{ with .Site.GetPage "/research-interests" }}
+            {{ if .Params.research_interests }}
+            <section class="content-card">
+                <h2>Research Interests</h2>
+                <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1rem;">
+                    {{ range .Params.research_interests }}
+                    <div style="border-left: 3px solid var(--accent-color); padding-left: 1rem;">
+                        <h4 style="margin: 0 0 0.25rem 0;">{{ .topic }}</h4>
+                        <p style="margin: 0; color: var(--text-muted); font-size: 0.95rem;">{{ .description }}</p>
+                    </div>
+                    {{ end }}
+                </div>
+            </section>
+            {{ end }}
+            {{ end }}
+
+            <!-- Education Section -->
+            <section class="content-card">
+                <h2>Education</h2>
+                <div class="horizontal-grid">
+                    {{ range .Params.education }}
+                    <div class="item-box">
+                        <h4>{{ .degree }}</h4>
+                        <div class="item-subtext">{{ .institution }}</div>
+                        <div class="item-meta">{{ .year }}</div>
+                    </div>
+                    {{ end }}
+                </div>
+            </section>
+
+            <!-- Professional Timeline Block (Pulled dynamically from content/timeline.md) -->
+            {{ with .Site.GetPage "/timeline" }}
+            {{ if .Params.timeline }}
+            <section class="content-card">
+                <h2>Professional Timeline</h2>
+                <div class="timeline-container">
+                    {{ range .Params.timeline }}
+                    <div class="timeline-item">
+                        <span class="timeline-year">{{ .year }}</span>
+                        <span style="font-size: 0.95rem; color: var(--text-color);">{{ .event }}</span>
+                    </div>
+                    {{ end }}
+                </div>
+            </section>
+            {{ end }}
+            {{ end }}
+        </main>
+    </div>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{ .Description }}">
     <title>{{ .Site.Title }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />    
