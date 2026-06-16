@@ -184,27 +184,9 @@
 <body>
 
     <div class="container">
-        <aside class="sidebar">
-            {{ $home := .Site.GetPage "/" }}
-            {{ with $home.Params.sidebar }}
-                <img src="{{ .avatar | relURL }}" alt="Profile Image" class="profile-img">
-                <h2>{{ .name }}</h2>
-                <p>{{ .description }}</p>
-                <div class="social-icons">
-                    {{ range .socials }}
-                    <a href="{{ .url }}" target="_blank" title="{{ .platform }}"><i class="{{ .icon }}"></i></a>
-                    {{ end }}
-                </div>
-            {{ end }}
-
-            <nav class="nav-menu">
-                <a href="{{ "" | absURL }}" class="active"><i class="fas fa-user-alt"></i> About Me</a>
-                <a href="{{ "projects/" | absURL }}"><i class="fas fa-code"></i> Featured Projects</a>
-                <a href="{{ "publications/" | absURL }}"><i class="fas fa-book"></i> Publications</a>
-                <a href="{{ "awards/" | absURL }}"><i class="fas fa-trophy"></i> Awards</a>
-            </nav>
-        </aside>
-
+        
+       {{ partial "sidebar.html" . }}
+        
         <main class="main-content">
             <section class="content-card summary-section">
                 <h1>{{ .Title }}</h1>
