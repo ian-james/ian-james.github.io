@@ -13,11 +13,17 @@
 
   <nav class="nav-menu">
       <a href="{{ "" | absURL }}" class="{{ if eq .Kind "home" }}active{{ end }}"><i class="fas fa-user-alt"></i> About Me</a>
+      
       <a href="{{ "experience/" | absURL }}" class="{{ if or (eq .Type "experience") (eq .Type "professional_experience") }}active{{ end }}"><i class="fas fa-briefcase"></i> Professional Experience</a>
+      
       <a href="{{ "projects/" | absURL }}" class="{{ if eq .Type "projects" }}active{{ end }}"><i class="fas fa-code"></i> Featured Projects</a>
-      <a href="{{ "research-interests/" | absURL }}" class="{{ if eq .Type "research_interests" }}active{{ end }}"><i class="fas fa-microscope"></i> Research Interests</a>
+      
+      <a href="{{ "research-interests/" | absURL }}" class="{{ if or (eq .Type "research_interests") (eq .Params.type "research_interests") }}active{{ end }}"><i class="fas fa-microscope"></i> Research Interests</a>
+      
       <a href="{{ "publications/" | absURL }}" class="{{ if eq .Type "publications" }}active{{ end }}"><i class="fas fa-book"></i> Publications</a>
+      
       <a href="{{ "awards/" | absURL }}" class="{{ if eq .Type "awards" }}active{{ end }}"><i class="fas fa-trophy"></i> Awards</a>
-      <a href="{{ "timeline/" | absURL }}" class="{{ if eq .Type "timeline" }}active{{ end }}"><i class="fas fa-history"></i> Timeline</a>
+      
+      <a href="{{ "timeline/" | absURL }}" class="{{ if or (eq .Type "timeline") (eq .Params.type "timeline") }}active{{ end }}"><i class="fas fa-history"></i> Timeline</a>
   </nav>
 </aside>
