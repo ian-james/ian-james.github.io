@@ -7,11 +7,11 @@ url: "/research-interests/"
 
 research_interests:
   - topic: "Agentic AI & Orchestration Frameworks"
-    description: "Designing self-evaluating and self-correcting data pipelines using LLM orchestrators to eliminate hallucinations in high-consequence environments."[cite: 2, 3]
+    description: "Designing self-evaluating and self-correcting data pipelines using LLM orchestrators to eliminate hallucinations in high-consequence environments."
   - topic: "Computational Geometry & 3D Reconstruction"
-    description: "Exploring evolutionary approaches to three-dimensional surface reconstruction from unorganized point clouds and optimizing automated industrial CAD workflows."[cite: 4, 7]
+    description: "Exploring evolutionary approaches to three-dimensional surface reconstruction from unorganized point clouds and optimizing automated industrial CAD workflows."
   - topic: "Computer Vision in Biometrics"
-    description: "Leveraging real-time vision pipelines (e.g., MediaPipe) to map physical motion, isolate diagnostic features, and inform clinical decision support systems."[cite: 7]
+    description: "Leveraging real-time vision pipelines (e.g., MediaPipe) to map physical motion, isolate diagnostic features, and inform clinical decision support systems."
   - topic: "Predictive Sports Analytics"
-    description: "Formulating custom mathematical features from historical hockey data to build predictive machine learning models capable of identifying marketplace inefficiencies."[cite: 2, 3]
+    description: "Formulating custom mathematical features from historical hockey data to build predictive machine learning models capable of identifying marketplace inefficiencies."
 ---
