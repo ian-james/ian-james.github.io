@@ -36,7 +36,7 @@
             margin: 0 auto;
         }
 
-        /* Left Sidebar */
+        /* Left Sidebar styling mapping override */
         .sidebar {
             background: var(--card-bg);
             padding: 2rem;
@@ -70,7 +70,6 @@
         .social-icons a { color: var(--text-muted); transition: color 0.2s; text-decoration: none; }
         .social-icons a:hover { color: var(--accent-color); }
 
-        /* Navigation Menu inside Sidebar */
         .nav-menu {
             margin-top: 2rem;
             display: flex;
@@ -101,7 +100,7 @@
             font-weight: 600;
         }
 
-        /* Right Content Area */
+        /* Right Content Base Area Layout */
         .main-content {
             display: flex;
             flex-direction: column;
@@ -140,7 +139,7 @@
         .btn:hover { opacity: 0.9; }
         .btn-alt { background-color: #495057; }
 
-        /* Core Competencies Matrix */
+        /* Skills Alignment */
         .skills-matrix {
             display: flex;
             flex-direction: column;
@@ -177,12 +176,12 @@
         .item-subtext { font-weight: 500; margin-bottom: 0.25rem; }
         .item-meta { color: var(--text-muted); font-size: 0.9rem; }
 
-        /* Compact Project Metrics Styling */
+        /* Compact Metrics Inline Boxes Layout */
         .metrics-summary-box {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem 2rem;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             padding: 1rem;
             border-radius: 8px;
             background-color: #fafbfc;
@@ -229,7 +228,6 @@
        {{ partial "sidebar.html" . }}
         
         <main class="main-content">
-            <!-- 1. About Me Card -->
             <section class="content-card summary-section">
                 <h1>{{ .Title }}</h1>
                 <div>{{ .Content | safeHTML }}</div>
@@ -240,7 +238,6 @@
                     {{ with .Params.cv_long_pdf }}<a href="{{ . | relURL }}" class="btn btn-alt" download><i class="fas fa-file-pdf"></i> Academic CV (PDF)</a>{{ end }}
                 </div>
 
-                <!-- Nested, Compact Project Impact Metrics (Saves massive screen space) -->
                 {{ with .Site.GetPage "/projects" }}
                 {{ if .Params.metrics }}
                 <div class="metrics-summary-box">
@@ -258,7 +255,6 @@
                 {{ end }}
             </section>
 
-            <!-- 2. Core Competencies Section -->
             <section class="content-card">
                 <h2>Core Competencies</h2>
                 <div class="skills-matrix">
@@ -271,24 +267,6 @@
                 </div>
             </section>
 
-            <!-- 3. Research Interests Block (Pulled dynamically from content/research-interests.md) -->
-            {{ with .Site.GetPage "/research-interests" }}
-            {{ if .Params.research_interests }}
-            <section class="content-card">
-                <h2>Research Interests</h2>
-                <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1rem;">
-                    {{ range .Params.research_interests }}
-                    <div style="border-left: 3px solid var(--accent-color); padding-left: 1rem;">
-                        <h4 style="margin: 0 0 0.25rem 0;">{{ .topic }}</h4>
-                        <p style="margin: 0; color: var(--text-muted); font-size: 0.95rem;">{{ .description }}</p>
-                    </div>
-                    {{ end }}
-                </div>
-            </section>
-            {{ end }}
-            {{ end }}
-
-            <!-- 4. Education Section -->
             <section class="content-card">
                 <h2>Education</h2>
                 <div class="horizontal-grid">
